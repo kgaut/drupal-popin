@@ -2,6 +2,7 @@
 
 namespace Drupal\popin\Form;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -127,6 +128,8 @@ class PopinConfigForm extends ConfigFormBase {
       ->set('texte_cta', $form_state->getValue('texte_cta'))
       ->set('lien_cta', $form_state->getValue('lien_cta'))
       ->save();
+
+    Cache::invalidateTags(['popin']);
   }
 
 }
