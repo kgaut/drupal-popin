@@ -1,0 +1,15 @@
+uuid: 8e580ea2-9e85-4ce2-9d52-9e71abe1f63c
+langcode: fr
+status: true
+dependencies: {  }
+name: popin
+label: Popin
+effects:
+  46734557-0c14-4777-8032-997e2f944c84:
+    uuid: 46734557-0c14-4777-8032-997e2f944c84
+    id: image_scale
+    weight: 1
+    data:
+      width: 400
+      height: null
+      upscale: false

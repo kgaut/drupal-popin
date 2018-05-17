@@ -1,0 +1,20 @@
+uuid: 84217dee-94f3-42cd-b9a4-5fda2ccb9927
+langcode: fr
+status: true
+dependencies:
+  module:
+    - popin
+  theme:
+    - nikonschool
+id: popinblock
+theme: nikonschool
+region: footer
+weight: 0
+provider: null
+plugin: popin_block
+settings:
+  id: popin_block
+  label: 'Popin block'
+  provider: popin
+  label_display: '0'
+visibility: {  }
