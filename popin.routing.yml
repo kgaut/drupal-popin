@@ -1,0 +1,11 @@
+
+popin.popin_config_form:
+  path: '/admin/content/popin'
+  defaults:
+    _form: '\Drupal\popin\Form\PopinConfigForm'
+    _title: 'PopinConfigForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
