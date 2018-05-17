@@ -34,8 +34,6 @@ class PopinBlock extends BlockBase {
     $image = File::load($config['image'][0]);
     $config['image'] = $image_style->buildUrl($image->getFileUri());
 
-    dpm($config);
-
     $build['popin_block']['#theme'] = 'popin_block';
     $build['popin_block']['#config'] = $config;
 
