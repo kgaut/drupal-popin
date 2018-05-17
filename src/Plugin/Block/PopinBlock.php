@@ -22,8 +22,13 @@ class PopinBlock extends BlockBase {
    */
   public function build() {
     $config = \Drupal::config('popin.popinconfig')->getRawData();
+    $build = [
+      '#cache' => [
+        'tags' => ['popin'],
+      ]
+    ];
     if($config['enabled'] !== 1) {
-      return [];
+      return $build;
     }
     $image_style = ImageStyle::load('popin');
     $image = File::load($config['image'][0]);
@@ -31,8 +36,8 @@ class PopinBlock extends BlockBase {
 
     dpm($config);
 
-    $build = [];
     $build['popin_block']['#theme'] = 'popin_block';
+    $build['popin_block']['#config'] = $config;
 
     return $build;
   }
