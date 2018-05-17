@@ -8,17 +8,16 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
- * Implements hook_help().
+ * Implements hook_theme().
  */
-function popin_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the popin module.
-    case 'help.page.popin':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Gestion de Popin') . '</p>';
-      return $output;
-
-    default:
-  }
+function popin_theme() {
+  return [
+    'popin_block' => [
+      'template' => 'block-popin',
+      'render element' => 'elements',
+      'variables' => [
+        'config' => [],
+      ],
+    ],
+  ];
 }
