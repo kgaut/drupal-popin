@@ -126,6 +126,7 @@ class PopinConfigForm extends ConfigFormBase {
       ->set('sous_titre', $form_state->getValue('sous_titre'))
       ->set('description', $form_state->getValue('description')['value'])
       ->set('texte_cta', $form_state->getValue('texte_cta'))
+      ->set('cookie_random', random_int(0,10000))
       ->set('lien_cta', $form_state->getValue('lien_cta'))
       ->save();
 
