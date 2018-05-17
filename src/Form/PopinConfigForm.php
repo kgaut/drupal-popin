@@ -5,6 +5,7 @@ namespace Drupal\popin\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\file\Entity\File;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigManagerInterface;
 
@@ -14,27 +15,14 @@ use Drupal\Core\Config\ConfigManagerInterface;
 class PopinConfigForm extends ConfigFormBase {
 
   /**
-   * Drupal\Core\Config\ConfigManagerInterface definition.
-   *
-   * @var \Drupal\Core\Config\ConfigManagerInterface
-   */
-  protected $configManager;
-  /**
    * Constructs a new PopinConfigForm object.
    */
-  public function __construct(
-    ConfigFactoryInterface $config_factory,
-      ConfigManagerInterface $config_manager
-    ) {
+  public function __construct(ConfigFactoryInterface $config_factory) {
     parent::__construct($config_factory);
-        $this->configManager = $config_manager;
   }
 
   public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('config.factory'),
-            $container->get('config.manager')
-    );
+    return new static($container->get('config.factory'));
   }
 
   /**
@@ -58,6 +46,20 @@ class PopinConfigForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('popin.popinconfig');
+    $form['enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Popin Activée ?'),
+      '#default_value' => $config->get('enabled'),
+    ];
+    $form['image'] = [
+      '#type' => 'managed_file',
+      '#title' => $this->t('Image'),
+      '#upload_location' => 'public://popin/',
+      '#upload_validators' => [
+        'file_validate_extensions' => ['gif png jpg jpeg'],
+      ],
+      '#default_value' => $config->get('image'),
+    ];
     $form['titre'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Titre'),
@@ -107,11 +109,21 @@ class PopinConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
-
+    $image = $form_state->getValue('image');
+    if(isset($image[0])) {
+      $file = File::load($image[0]);
+      if ($file && $file->isTemporary()) {
+        $file->setPermanent();
+        \Drupal::service('file.usage')->add($file, 'popin', 'user', \Drupal::currentUser()->id());
+        $file->save();
+      }
+    }
     $this->config('popin.popinconfig')
+      ->set('enabled', $form_state->getValue('enabled'))
+      ->set('image', $form_state->getValue('image'))
       ->set('titre', $form_state->getValue('titre'))
       ->set('sous_titre', $form_state->getValue('sous_titre'))
-      ->set('description', $form_state->getValue('description'))
+      ->set('description', $form_state->getValue('description')['value'])
       ->set('texte_cta', $form_state->getValue('texte_cta'))
       ->set('lien_cta', $form_state->getValue('lien_cta'))
       ->save();
