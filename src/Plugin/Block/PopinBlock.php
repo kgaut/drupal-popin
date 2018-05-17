@@ -84,7 +84,7 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
       ],
     ];
 
-    if($config['enabled'] !== 1) {
+    if(!isset($config['enabled']) || $config['enabled'] !== 1) {
       return $build;
     }
     if($this->session->get('popin', NULL) !== NULL && (int) $this->session->get('popin') === (int) $config['cookie_random']) {
