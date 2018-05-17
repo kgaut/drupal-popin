@@ -7,7 +7,7 @@
   "homepage": "https://www.drupal.org/project/popin",
   "minimum-stability": "dev",
   "support": {
-    "issues": "https://github.com/kgaut/drupal-popin/issues",
+    "issues": "https://github.com/kgaut/drupal-popin/issues"
   },
   "require": { }
 }
