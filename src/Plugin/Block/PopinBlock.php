@@ -92,8 +92,9 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
     }
 
     $image_style = ImageStyle::load('popin');
-    $image = File::load($config['image'][0]);
-    $config['image'] = $image_style->buildUrl($image->getFileUri());
+    if ($image = File::load($config['image'][0])) {
+      $config['image'] = $image_style->buildUrl($image->getFileUri());
+    }
 
     $build['popin_block']['#theme'] = 'popin_block';
     $build['popin_block']['#config'] = $config;
