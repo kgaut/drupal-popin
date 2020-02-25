@@ -1,5 +1,11 @@
-<img src="{{ config.image }}" alt="{{ config.titre }}" />
-<h1>{{ config.titre }}</h1>
-<h2>{{ config.sous_titre }}</h2>
-<div>{{ config.description | raw}}</div>
-<a href="{{ config.lien_cta }}">{{ config.texte_cta }}</a>
+<div class="popin active" id="{{ plugin_id|clean_class }}">
+  <div class="overlay" data-action="close"></div>
+  <div class="content">
+    <div class="close" data-action="close">x</div>
+      <img src="{{ config.image }}" alt="{{ config.titre }}" />
+      <h1>{{ config.titre }}</h1>
+      <h2>{{ config.sous_titre }}</h2>
+      <div>{{ config.description | raw}}</div>
+      <a href="{{ config.lien_cta }}">{{ config.texte_cta }}</a>
+  </div>
+</div>

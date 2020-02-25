@@ -1,0 +1,73 @@
+.popin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 950;
+  padding: 0 1rem;
+}
+.popin .active {
+}
+
+.popin .overlay {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+}
+
+.popin .content {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  margin: 1rem auto;
+  padding: 15px;
+  max-width: 430px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.5);
+}
+
+.popin .close {
+  cursor: pointer;
+  width: 100%;
+  height: 20px;
+  background-position: right center;
+}
+
+.popin .image {
+  margin-top: 15px;
+}
+
+.popin .image img {
+  width: 100%;
+  height: auto;
+}
+
+.popin .text-content {
+  background: white;
+  padding: 20px;
+  text-align: center;
+}
+.popin .text-content .title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.popin .text-content .subtitle {
+  font-size: 16px;
+}
+
+.popin .text-content .description p {
+  font-size: 14px;
+}
+
+.popin .button-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+

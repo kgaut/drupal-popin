@@ -1,0 +1,9 @@
+popin:
+  css:
+    theme:
+      css/popin.css: {}
+  js:
+    js/popin.js: { scope: footer }
+  dependencies:
+    - core/drupal
+    - core/jquery
