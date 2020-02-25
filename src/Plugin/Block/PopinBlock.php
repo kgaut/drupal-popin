@@ -80,7 +80,7 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
     $build = [
       '#cache' => [
         'tags' => ['popin'],
-        'context' => ['user', 'session', 'cookie:popinclose'],
+        'context' => ['user', 'session'],
       ],
     ];
 
@@ -88,8 +88,7 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
       return $build;
     }
 
-    if (isset($_COOKIE['popinclose']) && $_COOKIE['popinclose'] === 'true') {
-      $build['#cache'] = ['max-age' => 0];
+    if($this->session->get('popin', NULL) !== NULL && (int) $this->session->get('popin') === (int) $config['cookie_random']) {
       return $build;
     }
 

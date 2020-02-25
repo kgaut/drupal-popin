@@ -20,7 +20,7 @@
 
 		// Event Listeners
 		this.$triggers.on('click', this.open.bind(this));
-		$window.on('keydown', this.onKeyDown.bind(this));
+		$(window).on('keydown', this.onKeyDown.bind(this));
 		this.$actions.on('click', this.onClickAction.bind(this));
 	}
 

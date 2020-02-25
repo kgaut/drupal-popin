@@ -6,8 +6,15 @@
   height: 100vh;
   z-index: 950;
   padding: 0 1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s ease;
 }
-.popin .active {
+
+.popin.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .popin .overlay {
