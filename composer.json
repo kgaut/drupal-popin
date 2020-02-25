@@ -1,10 +1,10 @@
 {
-  "name": "kgaut/popin",
+  "name": "drupal/popin",
   "type": "drupal-module",
   "description": "Gestion de Popin",
   "keywords": ["Drupal"],
   "license": "GPL-2.0+",
-  "homepage": "https://www.drupal.org/project/popin",
+  "homepage": "https://github.com/kgaut/drupal-popin/",
   "minimum-stability": "dev",
   "support": {
     "issues": "https://github.com/kgaut/drupal-popin/issues"
