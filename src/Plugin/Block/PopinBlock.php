@@ -80,7 +80,7 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
     $build = [
       '#cache' => [
         'tags' => ['popin'],
-        'context' => ['user', 'session', 'cookie;popintest'],
+        'context' => ['user', 'session', 'cookie:popin'],
       ],
     ];
 
