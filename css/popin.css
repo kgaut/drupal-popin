@@ -39,10 +39,10 @@
 }
 
 .popin .close {
+  text-align: right;
   cursor: pointer;
   width: 100%;
   height: 20px;
-  background-position: right center;
 }
 
 .popin .image {
