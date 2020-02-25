@@ -3,3 +3,4 @@ type: module
 description: 'Gestion de Popin'
 core: 8.x
 package: 'Kgaut Tools'
+configure: popin.popin_config_form
