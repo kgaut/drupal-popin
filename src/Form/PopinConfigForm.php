@@ -3,6 +3,7 @@
 namespace Drupal\popin\Form;
 
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -51,6 +52,18 @@ class PopinConfigForm extends ConfigFormBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Popin Activée ?'),
       '#default_value' => $config->get('enabled'),
+    ];
+    $form['datestart'] = [
+      '#type' => 'datetime',
+      '#title' => $this->t('Date début affichage popin'),
+      '#description' => $this->t('Si vide alors la popin sera affichée dès maintenant'),
+      '#default_value' => $config->get('datestart') ? DrupalDateTime::createFromTimestamp($config->get('datestart')) : NULL,
+    ];
+    $form['dateend'] = [
+      '#type' => 'datetime',
+      '#title' => $this->t('Date fin affichage popin'),
+      '#description' => $this->t("Si vide alors la popin sera affichée tant qu'elle est activée"),
+      '#default_value' => $config->get('dateend') ? DrupalDateTime::createFromTimestamp($config->get('dateend')) : NULL,
     ];
     $form['image'] = [
       '#type' => 'managed_file',
@@ -119,6 +132,8 @@ class PopinConfigForm extends ConfigFormBase {
         $file->save();
       }
     }
+    $dateStart = $form_state->getValue('datestart');
+    $dateEnd = $form_state->getValue('dateend');
     $this->config('popin.popinconfig')
       ->set('enabled', $form_state->getValue('enabled'))
       ->set('image', $form_state->getValue('image'))
@@ -128,6 +143,9 @@ class PopinConfigForm extends ConfigFormBase {
       ->set('texte_cta', $form_state->getValue('texte_cta'))
       ->set('cookie_random', random_int(0,10000))
       ->set('lien_cta', $form_state->getValue('lien_cta'))
+      ->set('dateend', $form_state->getValue('dateend'))
+      ->set('datestart', $dateStart ? $dateStart->format('U') : NULL)
+      ->set('dateend', $dateEnd ? $dateEnd->format('U') : NULL)
       ->save();
 
     Cache::invalidateTags(['popin']);

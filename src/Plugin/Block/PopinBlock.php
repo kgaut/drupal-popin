@@ -3,6 +3,7 @@
 namespace Drupal\popin\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -10,7 +11,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\user\PrivateTempStoreFactory;
 use Drupal\Core\Session\SessionManagerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Provides a 'PopinBlock' block.
@@ -86,6 +86,19 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
 
     if(!isset($config['enabled']) || $config['enabled'] !== 1) {
       return $build;
+    }
+    $now = new DrupalDateTime();
+    if(isset($config['datestart'])) {
+      $dateStart = DrupalDateTime::createFromTimestamp($config['datestart']);
+      if ($dateStart > $now) {
+        return $build;
+      }
+    }
+    if(isset($config['dateend'])) {
+      $dateEnd = DrupalDateTime::createFromTimestamp($config['dateend']);
+      if ($dateEnd < $now) {
+        return $build;
+      }
     }
 
     if($this->session->get('popin', NULL) !== NULL && (int) $this->session->get('popin') === (int) $config['cookie_random']) {
