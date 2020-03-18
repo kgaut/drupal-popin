@@ -48,24 +48,37 @@ class PopinConfigForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('popin.popinconfig');
-    $form['enabled'] = [
+
+    $form['basic'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Popin display configuration'),
+      '#open' => TRUE,
+    ];
+
+    $form['basic']['enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Popin Activée ?'),
       '#default_value' => $config->get('enabled'),
     ];
-    $form['datestart'] = [
+    $form['basic']['datestart'] = [
       '#type' => 'datetime',
       '#title' => $this->t('Date début affichage popin'),
       '#description' => $this->t('Si vide alors la popin sera affichée dès maintenant'),
       '#default_value' => $config->get('datestart') ? DrupalDateTime::createFromTimestamp($config->get('datestart')) : NULL,
     ];
-    $form['dateend'] = [
+    $form['basic']['dateend'] = [
       '#type' => 'datetime',
       '#title' => $this->t('Date fin affichage popin'),
       '#description' => $this->t("Si vide alors la popin sera affichée tant qu'elle est activée"),
       '#default_value' => $config->get('dateend') ? DrupalDateTime::createFromTimestamp($config->get('dateend')) : NULL,
     ];
-    $form['image'] = [
+
+    $form['content'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Popin content'),
+      '#open' => TRUE,
+    ];
+    $form['content']['image'] = [
       '#type' => 'managed_file',
       '#title' => $this->t('Image'),
       '#upload_location' => 'public://popin/',
@@ -74,7 +87,7 @@ class PopinConfigForm extends ConfigFormBase {
       ],
       '#default_value' => $config->get('image'),
     ];
-    $form['titre'] = [
+    $form['content']['titre'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Titre'),
       '#description' => $this->t('Titre de la popin'),
@@ -82,7 +95,7 @@ class PopinConfigForm extends ConfigFormBase {
       '#size' => 64,
       '#default_value' => $config->get('titre'),
     ];
-    $form['sous_titre'] = [
+    $form['content']['sous_titre'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Sous-titre'),
       '#description' => $this->t('Sous-titre de la popin'),
@@ -90,12 +103,12 @@ class PopinConfigForm extends ConfigFormBase {
       '#size' => 64,
       '#default_value' => $config->get('sous_titre'),
     ];
-    $form['description'] = [
+    $form['content']['description'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Description'),
       '#default_value' => $config->get('description'),
     ];
-    $form['texte_cta'] = [
+    $form['content']['texte_cta'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Texte CTA'),
       '#description' => $this->t('Sera affiché sur le bouton'),
@@ -103,7 +116,7 @@ class PopinConfigForm extends ConfigFormBase {
       '#size' => 64,
       '#default_value' => $config->get('texte_cta'),
     ];
-    $form['lien_cta'] = [
+    $form['content']['lien_cta'] = [
       '#type' => 'url',
       '#title' => $this->t('Lien CTA'),
       '#default_value' => $config->get('lien_cta'),
