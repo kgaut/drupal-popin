@@ -57,19 +57,19 @@ class PopinConfigForm extends ConfigFormBase {
 
     $form['basic']['enabled'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Popin Activée ?'),
+      '#title' => $this->t('Popin enabled ?'),
       '#default_value' => $config->get('enabled'),
     ];
     $form['basic']['datestart'] = [
       '#type' => 'datetime',
-      '#title' => $this->t('Date début affichage popin'),
-      '#description' => $this->t('Si vide alors la popin sera affichée dès maintenant'),
+      '#title' => $this->t('Start date for popin display'),
+      '#description' => $this->t('If left empty, the popin will be displayed without limit'),
       '#default_value' => $config->get('datestart') ? DrupalDateTime::createFromTimestamp($config->get('datestart')) : NULL,
     ];
     $form['basic']['dateend'] = [
       '#type' => 'datetime',
-      '#title' => $this->t('Date fin affichage popin'),
-      '#description' => $this->t("Si vide alors la popin sera affichée tant qu'elle est activée"),
+      '#title' => $this->t('Ending date for popin display'),
+      '#description' => $this->t('If left empty, the popin will be displayed without limit'),
       '#default_value' => $config->get('dateend') ? DrupalDateTime::createFromTimestamp($config->get('dateend')) : NULL,
     ];
 
@@ -78,49 +78,54 @@ class PopinConfigForm extends ConfigFormBase {
       '#title' => $this->t('Popin content'),
       '#open' => TRUE,
     ];
+
     $form['content']['image'] = [
       '#type' => 'managed_file',
-      '#title' => $this->t('Image'),
+      '#title' => $this->t('Popin image'),
       '#upload_location' => 'public://popin/',
       '#upload_validators' => [
         'file_validate_extensions' => ['gif png jpg jpeg'],
       ],
       '#default_value' => $config->get('image'),
     ];
+
     $form['content']['titre'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Titre'),
-      '#description' => $this->t('Titre de la popin'),
+      '#title' => $this->t('Title'),
+      '#description' => $this->t('Popin title'),
       '#maxlength' => 128,
       '#size' => 64,
       '#default_value' => $config->get('titre'),
     ];
+
     $form['content']['sous_titre'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Sous-titre'),
-      '#description' => $this->t('Sous-titre de la popin'),
+      '#title' => $this->t('Subtitle'),
       '#maxlength' => 128,
       '#size' => 64,
       '#default_value' => $config->get('sous_titre'),
     ];
+
     $form['content']['description'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Description'),
       '#default_value' => $config->get('description'),
     ];
+
     $form['content']['texte_cta'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Texte CTA'),
-      '#description' => $this->t('Sera affiché sur le bouton'),
+      '#title' => $this->t('Button text'),
       '#maxlength' => 64,
       '#size' => 64,
       '#default_value' => $config->get('texte_cta'),
     ];
+
     $form['content']['lien_cta'] = [
       '#type' => 'url',
-      '#title' => $this->t('Lien CTA'),
+      '#title' => $this->t('Button link'),
       '#default_value' => $config->get('lien_cta'),
     ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -154,7 +159,7 @@ class PopinConfigForm extends ConfigFormBase {
       ->set('sous_titre', $form_state->getValue('sous_titre'))
       ->set('description', $form_state->getValue('description')['value'])
       ->set('texte_cta', $form_state->getValue('texte_cta'))
-      ->set('cookie_random', random_int(0,10000))
+      ->set('cookie_random', random_int(0, 10000))
       ->set('lien_cta', $form_state->getValue('lien_cta'))
       ->set('dateend', $form_state->getValue('dateend'))
       ->set('datestart', $dateStart ? $dateStart->format('U') : NULL)
