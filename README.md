@@ -1,4 +1,5 @@
 # Popin
+Primary hosting : https://www.drupal.org/project/popin
 
 ## About this module
 This module allows you to display a popin (lightbox) on your website.
