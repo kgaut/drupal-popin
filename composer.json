@@ -1,5 +1,5 @@
 {
-  "name": "kgaut/popin",
+  "name": "drupal/popin",
   "type": "drupal-module",
   "description": "Gestion de Popin",
   "keywords": ["Drupal"],

@@ -1,3 +1,3 @@
 popin configuration:
-  title: 'Gestion de la configuration de la popin'
-  description: 'Activation / Désactivation de la popin, et modification de son contenu'
+  title: 'Popin management'
+  description: 'Enable or disable the popin and update the content'

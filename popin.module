@@ -1,13 +1,6 @@
 <?php
 
 /**
- * @file
- * Contains popin.module.
- */
-
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
  * Implements hook_theme().
  */
 function popin_theme() {
