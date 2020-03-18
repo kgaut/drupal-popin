@@ -2,3 +2,4 @@ CKeditor Responsive Plugin 8.x-1.0-beta1, XXXX-XX-XX
 --------------------------
 - Update text to english
 - Add readme file (hello reader !)
+- Update composer.json file

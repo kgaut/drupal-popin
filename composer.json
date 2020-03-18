@@ -1,13 +1,13 @@
 {
   "name": "drupal/popin",
   "type": "drupal-module",
-  "description": "Gestion de Popin",
+  "description": "Allow to display a popin on the website",
   "keywords": ["Drupal"],
   "license": "GPL-2.0+",
-  "homepage": "https://github.com/kgaut/drupal-popin/",
+  "homepage": "https://www.drupal.org/project/popin",
   "minimum-stability": "dev",
   "support": {
-    "issues": "https://github.com/kgaut/drupal-popin/issues"
+    "issues": "https://www.drupal.org/project/issues/popin"
   },
   "require": { }
 }
