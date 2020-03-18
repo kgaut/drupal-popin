@@ -84,7 +84,7 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
       ],
     ];
 
-    if(FALSE && !isset($config['enabled']) || $config['enabled'] !== 1) {
+    if(!isset($config['enabled']) || $config['enabled'] !== 1) {
       return $build;
     }
     $now = new DrupalDateTime();
@@ -101,12 +101,11 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
       }
     }
 
-    if(FALSE && $this->session->get('popin', NULL) !== NULL && (int) $this->session->get('popin') === (int) $config['cookie_random']) {
+    if($this->session->get('popin', NULL) !== NULL && (int) $this->session->get('popin') === (int) $config['cookie_random']) {
       return $build;
     }
 
-    $image_style = ImageStyle::load('popin');
-    if (isset($config['image'][0]) && is_numeric($config['image'][0]) && $image = File::load($config['image'][0])) {
+    if (($image_style = ImageStyle::load('popin')) && isset($config['image'][0]) && is_numeric($config['image'][0]) && $image = File::load($config['image'][0])) {
       $config['image'] = $image_style->buildUrl($image->getFileUri());
     }
 
