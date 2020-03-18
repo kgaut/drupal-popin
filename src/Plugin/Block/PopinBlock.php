@@ -84,7 +84,7 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
       ],
     ];
 
-    if(!isset($config['enabled']) || $config['enabled'] !== 1) {
+    if(FALSE && !isset($config['enabled']) || $config['enabled'] !== 1) {
       return $build;
     }
     $now = new DrupalDateTime();
@@ -101,7 +101,7 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
       }
     }
 
-    if($this->session->get('popin', NULL) !== NULL && (int) $this->session->get('popin') === (int) $config['cookie_random']) {
+    if(FALSE && $this->session->get('popin', NULL) !== NULL && (int) $this->session->get('popin') === (int) $config['cookie_random']) {
       return $build;
     }
 

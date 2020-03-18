@@ -114,7 +114,7 @@ class PopinConfigForm extends ConfigFormBase {
 
     $form['content']['texte_cta'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Button text'),
+      '#title' => $this->t('Link text'),
       '#maxlength' => 64,
       '#size' => 64,
       '#default_value' => $config->get('texte_cta'),
@@ -122,7 +122,7 @@ class PopinConfigForm extends ConfigFormBase {
 
     $form['content']['lien_cta'] = [
       '#type' => 'url',
-      '#title' => $this->t('Button link'),
+      '#title' => $this->t('Link target (url)'),
       '#default_value' => $config->get('lien_cta'),
     ];
 

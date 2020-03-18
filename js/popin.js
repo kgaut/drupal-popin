@@ -17,6 +17,7 @@
 		this.$actions = this.$container.find('[data-action]');
 
 		this.$container.addClass('initialised');
+		console.log('laaa');
 
 		// Event Listeners
 		this.$triggers.on('click', this.open.bind(this));
