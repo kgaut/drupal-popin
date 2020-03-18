@@ -4,4 +4,5 @@ CKeditor Responsive Plugin 8.x-1.0-beta1, XXXX-XX-XX
 - Add changelog file (hello reader !)
 - Update composer.json file
 - Update module package
-- Add readme file (hello reader !)
+- Add readme file
+- display description as processed_text

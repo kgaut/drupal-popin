@@ -109,6 +109,12 @@ class PopinBlock extends BlockBase implements ContainerFactoryPluginInterface  {
       $config['image'] = $image_style->buildUrl($image->getFileUri());
     }
 
+    $config['description'] = [
+      '#type' => 'processed_text',
+      '#text' => $config['description']['value'],
+      '#format' => $config['description']['format'],
+    ];
+
     $build['popin_block']['#theme'] = 'popin_block';
     $build['popin_block']['#config'] = $config;
     $build['#cache'] = ['max-age' => 0];
