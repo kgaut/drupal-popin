@@ -2,5 +2,5 @@ name: 'Popin'
 type: module
 description: 'Allow to display a popin on the website'
 core: 8.x
-package: 'Kgaut Tools'
+package: 'Utilities'
 configure: popin.popin_config_form
